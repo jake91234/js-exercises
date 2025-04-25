@@ -52,15 +52,36 @@
         console.log("---------------------")
         console.log("PART 1...")
 
+        // Function to calculate the area of a circle
+        function calculateCircleArea(radius) {
+            return Math.PI * Math.pow(radius, 2)
+        }
 
-
+        var r = 9;
+        var a = calculateCircleArea(r);
+        console.log("RADIUS:", r);
+        console.log("AREA:", a);
 
 
         console.log("---------------------")
         console.log("PART 2...")
 
+        var inputRadius = document.getElementById("input-radius");
+        var btn = document.getElementById("calculate");
+        var displayArea = document.getElementById("display-area");
 
+        //console.log(inputRadius.value);
 
+        function submit() {
+            var r = inputRadius.value
+            var a = calculateCircleArea(r)
+            console.log("RADIUS:", r)
+            console.log("AREA:", a)
+            
+            displayArea.innerText = a;
+        }
+
+        btn.addEventListener("click", submit, false);
 
 
     </script>

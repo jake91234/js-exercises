@@ -93,6 +93,38 @@
         console.log("---------------------")
         console.log("PART 3...")
 
+        function runSimulation() {
+        const initial = parseFloat(document.getElementById('initial').value);
+        const target = parseFloat(document.getElementById('target').value);
+        const mean = parseFloat(document.getElementById('mean').value) / 100;
+        const stdev = parseFloat(document.getElementById('stdev').value) / 100;
+
+        let balance = initial;
+        let years = 0;
+        const returns = [];
+        const randomNormal = d3.randomNormal(mean, stdev);
+
+        while (balance < target) {
+            const r = randomNormal();
+            returns.push((r * 100).toFixed(2) + '%');
+            balance *= (1 + r);
+            years++;
+        }
+
+        const output = `
+            <strong>Simulation Result:</strong><br>
+            Initial Balance: ${formatUSD(initial)}<br>
+            Years to reach ${formatUSD(target)}: ${years}<br>
+            Final Balance: ${formatUSD(balance)}<br>
+            <details>
+            <summary>Annual Returns Used</summary>
+            <ul>${returns.map(r => `<li>${r}</li>`).join('')}</ul>
+            </details>
+        `;
+        document.getElementById('output').innerHTML = output;
+        }
+    
+       
 
 
 

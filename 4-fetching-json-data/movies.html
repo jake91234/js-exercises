@@ -85,7 +85,24 @@
 
                 console.log("---------------------")
                 console.log("PART 1...")
+                    console.log(data.length)
 
+                    data.forEach(function(movie) {
+                        //console.log("---")
+                        //console.log(movie)
+                        console.log(movie.Title, movie.Year)
+                    })
+
+                    // sort the movies by rating in descending order
+                    // so the movie with the highest rating is first
+                    // then we can grab the first item from the sorted array
+                    // and that will be the one with the highest rating
+                    var sortedMovies = data.sort(function(a, b) {
+                        return d3.descending(a.Rating, b.Rating)
+                    })
+
+                    var highestRated = sortedMovies[0]
+                    console.log("HIGHEST RATED:", highestRated.Title, highestRated.Rating)
 
 
 
@@ -93,9 +110,46 @@
 
                 console.log("---------------------")
                 console.log("PART 2...")
+                
+                    var selectMovie = document.getElementById("select-movie")
+                    var displayTitle = document.getElementById("display-title")
+                    var displayYear = document.getElementById("display-year")
+                    var displayRating = document.getElementById("display-rating")
+                    var imageContainer = document.getElementById("image-container")
 
+                    // sort data back in original order
+                    data.sort((a,b) => d3.ascending(a["Id"], b["Id"]))
 
+                    data.forEach(movie => {
+                        var option = document.createElement("option")
+                        option.value = movie.Id
+                        option.textContent = movie.Title
 
+                        selectMovie.appendChild(option)
+                    })
+
+                    function updateMovieInfo() {
+                        var selectedId = selectMovie.value
+                        var selectedMovie = data.find(movie => movie.Id == selectedId)
+
+                    if (selectedMovie) {
+                            displayTitle.textContent = selectedMovie.Title
+                            displayYear.textContent = selectedMovie.Year
+                            displayRating.textContent = selectedMovie.Rating
+
+                            imageContainer.innerHTML = "" // Clear any previous image
+                            var img = document.createElement("img")
+                            img.src = selectedMovie["Thumbnail Image URL"]
+                            img.alt = `Thumbnail of ${selectedMovie.Title}`
+                            imageContainer.appendChild(img)
+                    } else {
+                            displayTitle.textContent = "TODO"
+                            displayYear.textContent = "TODO"
+                            displayRating.textContent = "TODO"
+                            imageContainer.innerHTML = ""
+                    }
+                    }
+                    selectMovie.addEventListener("change", updateMovieInfo, false)
 
 
             })

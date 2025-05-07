@@ -92,7 +92,7 @@
 
         console.log("VEHICLE PLATE:", trip.vehicle.licensePlate)
         
-        console.log("STOPS:", trip.stops.length)
+        console.log("NUMBER OF STOPS:", trip.stops.length)
        
         console.log("FIRST STOP:", trip.stops[0].destination)
         
@@ -106,7 +106,7 @@
         var fares = trip.stops.map(function(stop){
             return stop.fare
         })
-        console.log("FARES:", fares)
+        console.log("FARES COLLECTED:", fares)
 
         var totalFare = d3.sum(fares)
         console.log("TOTAL FARE:", `$${totalFare.toFixed(2)}`)

@@ -98,7 +98,7 @@
             console.log("---------------------")
             console.log("PART 1...")
 
-            console.log("MARKETS:", data.markets.length)
+            console.log("TOTAL MARKETS:", data.markets.length)
 
             // FILTER EQUITY MARKETS
 
@@ -106,7 +106,7 @@
                 return market.market_type == "Equity"
             })
 
-            console.log("EQUITY MARKETS:", equityMarkets.length)
+            console.log("EQUITY MARKETS COUNT:", equityMarkets.length)
 
             equityMarkets.forEach(market => {
                 console.log("...", `${market.region} (${market.market_type})`)
@@ -142,7 +142,7 @@
 
 
         }).catch(function(error) {
-            console.error("ERROR:", error)
+            console.error("AN ERROR OCCURRED:", error)
         })
 
 

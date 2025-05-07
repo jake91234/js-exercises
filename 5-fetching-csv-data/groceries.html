@@ -82,7 +82,7 @@
             console.log("---------------------")
             console.log("PART 1...")
 
-            console.log("PRODUCTS:", data.length)
+            console.log("TOTAL PRODUCTS:", data.length)
 
             data.forEach(product => {
                 console.log("...", product.name, formatUSD(parseFloat(product.price)))
@@ -95,7 +95,7 @@
                     departments.push(product.department)
                 }
             })
-            console.log("DEPARTMENTS:", departments.length)
+            console.log("UNIQUE DEPARTMENTS:", departments.length)
 
             departments.forEach(function(deptName){
                 console.log("...", deptName.toUpperCase())
